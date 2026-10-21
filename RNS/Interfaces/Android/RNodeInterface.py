@@ -145,7 +145,8 @@ class AndroidBluetoothManager():
 
     def get_paired_devices(self):
         if self.bt_enabled():
-            return self.bt_adapter.getDefaultAdapter().getBondedDevices()
+            devices = self.bt_adapter.getDefaultAdapter().getBondedDevices()
+            return list(devices.toArray())
         else:
             RNS.log("Could not query paired devices, Bluetooth is disabled", RNS.LOG_EXTREME)
             return []
